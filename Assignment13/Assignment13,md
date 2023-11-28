@@ -1,0 +1,24 @@
+
+# Assignment 13 - Implementation of Interfacing of C++ functions with C code.
+## Overview
+
+This assignment entails the utilization of C code to implement a specific part of the program. This approach is applicable to most programming languages, with only variations in keywords or methods. The objective is to enhance program efficiency by treating a segment of code directly as a C program.
+
+## Function Declaration and Definition
+
+1. **Function File:**
+   - The function declaration is housed in /src/printLib.h, which contains the portion of the code to be implemented as a C function but referenced through a C++ file.
+   - A macro #ifdef __cplusplus is implemented to recognize the file into which it is being included. If included in a C++ file, it runs extern "C" {}.
+   - In `/src/printLib.cpp` file we are implementing the `void printMsg()` function.
+   ```
+   void printMsg()
+   {
+    printf("Error! File Not Found!\n");
+   }
+    ``` 
+   - Function `printMsg()` print error message.
+
+2. **Usage:**
+   - In the file /src/Reader.cpp, the above file is included. The function void Reader::getTriangles(std::vector<Triangle>& triangles) utilizes the void printMsg() function.
+   - When the reader encounters difficulty reading the file, it calls the function to print an error on the console.
+   - The use of the extern "C" keyword instructs the C++ compiler not to perform name mangling while writing symbols in the ObjectDump file.
